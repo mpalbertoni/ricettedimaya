@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>aiutoooo</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "Nunito", sans-serif;
+}
+#word {
+  font-size: 10rem;
+  font-weight: 700;
+  color: #fff;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.letter {
+  display: inline-block;
+}
+#controls {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: rgba(255,255,255,0.08);
+  padding: 20px 18px;
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.6);
+}
+#controls label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+#controls input[type="range"] {
+  width: 100px;
+  accent-color: #fff;
+}
+#controls input[type="text"] {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  color: #fff;
+  padding: 4px 8px;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.8rem;
+  text-align: center;
+  width: 120px;
+}
+#controls input[type="text"]:focus {
+  outline: none;
+  border-color: rgba(255,255,255,0.7);
+}
+</style>
+</head>
+<body>
+  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:100;color:#fff;text-decoration:none;font-family:Nunito,sans-serif;font-size:14px;background:rgba(0,0,0,0.5);padding:4px 10px;border-radius:4px;">← Back</a>
+  <div id="word"></div>
+  <div id="controls">
+    <label>Velocità
+      <input type="range" id="speed" min="2" max="12" value="6" step="0.5">
+    </label>
+    <label>Scala
+      <input type="range" id="scale" min="2" max="8" value="5" step="0.5">
+    </label>
+    <label>Angolo
+      <input type="range" id="angle" min="0" max="360" value="40" step="1">
+    </label>
+    <label>Parola
+      <input type="text" id="word-input" value="aiutoooo">
+    </label>
+  </div>
+<script>
+let letters = [];
+let CYCLE_DURATION = 6000;
+let MAX_SCALE = 5;
+const WAVE_SPREAD = 1.8;
+let ANGLE = 40;
+const MIN_SCALE = 0.15;
+const wordContainer = document.getElementById('word');
+
+function setAngle(deg) {
+  ANGLE = deg;
+  wordContainer.style.transform = `rotate(-${deg}deg)`;
+}
+
+function buildWord(word) {
+  wordContainer.innerHTML = '';
+  letters = [];
+  for (const char of word) {
+    const span = document.createElement('span');
+    span.className = 'letter';
+    span.textContent = char;
+    wordContainer.appendChild(span);
+    letters.push(span);
+  }
+}
+
+buildWord('aiutoooo');
+setAngle(40);
+
+document.getElementById('speed').addEventListener('input', (e) => {
+  CYCLE_DURATION = parseFloat(e.target.value) * 1000;
+});
+document.getElementById('scale').addEventListener('input', (e) => {
+  MAX_SCALE = parseFloat(e.target.value);
+});
+document.getElementById('angle').addEventListener('input', (e) => {
+  setAngle(parseFloat(e.target.value));
+});
+document.getElementById('word-input').addEventListener('change', (e) => {
+  const w = e.target.value.trim();
+  if (w.length > 0) buildWord(w);
+});
+
+function animate() {
+  const now = performance.now();
+  const count = letters.length;
+  if (count === 0) { requestAnimationFrame(animate); return; }
+  const peak = ((now % CYCLE_DURATION) / CYCLE_DURATION) * (count + 2) - 1;
+
+  letters.forEach((letter, i) => {
+    const dist = Math.abs(i - peak);
+    const influence = Math.exp(-(dist * dist) / (2 * WAVE_SPREAD * WAVE_SPREAD));
+    const gradOffset = 0.6 * (i / (count - 1));
+    const scale = MIN_SCALE + gradOffset + (MAX_SCALE - MIN_SCALE - gradOffset) * influence;
+    letter.style.transform = `scale(${scale})`;
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+</body>
+</html>

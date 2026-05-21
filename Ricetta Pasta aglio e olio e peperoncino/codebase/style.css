@@ -1,0 +1,185 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: #fdf6ec;
+  color: #3a2a1a;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.header h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2.2rem;
+  color: #c75b39;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.chef {
+  font-size: 1rem;
+  color: #5b7a4f;
+  margin-top: 0.3rem;
+}
+
+.info-bar {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.tag {
+  background: #5b7a4f;
+  color: #fff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+}
+
+h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #c75b39;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #5b7a4f;
+  padding-bottom: 0.3rem;
+  margin-top: 2rem;
+}
+
+.ingredients {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.portion-control {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.portion-control input[type="range"] {
+  flex: 1;
+  max-width: 200px;
+  accent-color: #5b7a4f;
+}
+
+#portion-display {
+  font-weight: bold;
+  color: #c75b39;
+  min-width: 1.5rem;
+}
+
+#ingredient-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#ingredient-list li {
+  padding: 0.4rem 0;
+}
+
+#ingredient-list input[type="checkbox"] {
+  accent-color: #5b7a4f;
+  margin-right: 0.5rem;
+  transform: scale(1.1);
+}
+
+#ingredient-list input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.steps ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.steps li {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.steps li:last-child {
+  border-bottom: none;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  background: #c75b39;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #5b7a4f;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.3rem;
+  color: #c75b39;
+}
+
+.print-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #c75b39;
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.print-btn:hover {
+  background: #a84a2e;
+}
+
+@media print {
+  .print-btn { display: none; }
+  .portion-control { display: none; }
+  body { background: #fff; }
+  .ingredients { box-shadow: none; padding: 0; }
+}
+
+@media (max-width: 480px) {
+  .header h1 { font-size: 1.6rem; }
+  .container { padding: 1rem; }
+}

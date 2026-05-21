@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Le Ricette Classiche Italiane — Spaghetti aglio olio e peperoncino</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Lora", Georgia, "Times New Roman", serif;
+      background-color: #f5ede0;
+      background-image: repeating-conic-gradient(
+        #d9a89b 0deg 90deg,
+        #f2e6d9 90deg 180deg
+      );
+      background-size: 80px 80px;
+      padding: 2rem;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.08;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 1.2rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      display: inline-block;
+      width: auto;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .title-animation {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      position: relative;
+      min-height: 70px;
+      overflow: hidden;
+      padding: 0.5rem 0;
+    }
+
+    .strand {
+      position: absolute;
+      width: 80px;
+      height: auto;
+      opacity: 0;
+    }
+
+    .s1 { top: -30px; left: 10%; animation: flyInTop 1.2s ease-out infinite; animation-delay: 0.1s; }
+    .s2 { top: -30px; left: 40%; animation: flyInTop 1s ease-out infinite; animation-delay: 0.4s; }
+    .s3 { top: -30px; left: 70%; animation: flyInTop 1.4s ease-out infinite; animation-delay: 0.7s; }
+    .s4 { bottom: -30px; left: 20%; animation: flyInBottom 1.1s ease-out infinite; animation-delay: 0.2s; }
+    .s5 { bottom: -30px; left: 55%; animation: flyInBottom 1.3s ease-out infinite; animation-delay: 0.5s; }
+    .s6 { bottom: -30px; left: 85%; animation: flyInBottom 0.9s ease-out infinite; animation-delay: 0.8s; }
+    .s7 { top: 10px; left: -60px; animation: flyInLeft 1s ease-out infinite; animation-delay: 0.3s; }
+    .s8 { top: 10px; right: -60px; animation: flyInRight 1.2s ease-out infinite; animation-delay: 0.6s; }
+
+    @keyframes flyInTop {
+      0% { opacity: 0; transform: translateY(-60px) rotate(-10deg); }
+      30% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(80px) rotate(5deg); }
+    }
+
+    @keyframes flyInBottom {
+      0% { opacity: 0; transform: translateY(60px) rotate(10deg); }
+      30% { opacity: 1; }
+      100% { opacity: 0; transform: translateY(-80px) rotate(-5deg); }
+    }
+
+    @keyframes flyInLeft {
+      0% { opacity: 0; transform: translateX(-80px) rotate(-15deg); }
+      30% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(120px) rotate(15deg); }
+    }
+
+    @keyframes flyInRight {
+      0% { opacity: 0; transform: translateX(80px) rotate(15deg); }
+      30% { opacity: 1; }
+      100% { opacity: 0; transform: translateX(-120px) rotate(-15deg); }
+    }
+
+    .title-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      opacity: 0;
+      animation: fadeInTitle 0.8s ease-out forwards;
+      animation-delay: 1.3s;
+    }
+
+    @keyframes fadeInTitle {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .flag-left, .flag-right {
+      width: 36px;
+      height: auto;
+      border-radius: 3px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .animated-title {
+      font-size: 2.5rem;
+      color: #c4a024;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #c4a024;
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+
+    .portion-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 0.75rem 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .portion-selector label {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #8b0000;
+    }
+
+    .portion-btn {
+      width: 36px;
+      height: 36px;
+      border: 2px solid #8b0000;
+      background: #fff;
+      color: #8b0000;
+      font-size: 1.3rem;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .portion-btn:hover {
+      background: #8b0000;
+      color: #fff;
+    }
+
+    .portion-count {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #8b0000;
+      min-width: 2rem;
+      text-align: center;
+    }
+
+    .recipe-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 16px;
+      padding: 2.5rem 3rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      text-align: left;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .recipe-title {
+      font-size: 1.8rem;
+      color: #8b0000;
+      margin-bottom: 0.3rem;
+    }
+
+    .chef {
+      font-style: italic;
+      color: #666;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px dashed #ccc;
+      padding-bottom: 0.5rem;
+    }
+
+    .recipe-card h3 {
+      color: #2d6b2a;
+      margin: 1.2rem 0 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .ingredients {
+      list-style: none;
+      padding: 0;
+      padding-left: 1.2rem;
+    }
+
+    .ingredients li {
+      padding: 0.3rem 0;
+      border-bottom: 1px dotted #eee;
+    }
+
+    .ingredients li::before {
+      content: "• ";
+      color: #cc0000;
+    }
+
+    .preparation {
+      padding-left: 1.2rem;
+      list-style: none;
+    }
+
+    .preparation li {
+      padding: 0.45rem 0;
+      line-height: 1.6;
+    }
+
+    .preparation li::before {
+      content: "• ";
+      color: #cc0000;
+    }
+
+    .nonscalable {
+      color: #888;
+      font-style: italic;
+    }
+
+
+  </style>
+</head>
+<body>
+  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:100;color:#fff;text-decoration:none;font-family:Lora,serif;font-size:14px;background:rgba(0,0,0,0.5);padding:4px 10px;border-radius:4px;">← Back</a>
+  <div class="container">
+    <header class="header">
+      <div class="header-title">
+        <div class="title-animation">
+        <svg class="strand s1" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 0 Q30 20 20 40 T10 80" stroke="#f4d03f" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <svg class="strand s2" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 0 Q60 25 50 50 T40 80" stroke="#e5c832" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <svg class="strand s3" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M70 0 Q50 20 60 40 T70 80" stroke="#f4d03f" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <svg class="strand s4" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 0 Q40 30 30 60 T20 80" stroke="#e5c832" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <svg class="strand s5" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M50 0 Q30 25 40 50 T50 80" stroke="#f4d03f" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <svg class="strand s6" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60 0 Q80 30 70 60 T60 80" stroke="#e5c832" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <svg class="strand s7" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 20 Q30 0 60 20 T100 20" stroke="#f4d03f" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <svg class="strand s8" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 10 Q30 30 60 10 T100 20" stroke="#e5c832" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="title-content">
+          <svg class="flag-left" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="20" height="40" fill="#009246"/>
+            <rect x="20" y="0" width="20" height="40" fill="#ffffff"/>
+            <rect x="40" y="0" width="20" height="40" fill="#ce2b37"/>
+          </svg>
+          <h1 class="animated-title">Le Ricette Classiche Italiane</h1>
+          <svg class="flag-right" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="20" height="40" fill="#009246"/>
+            <rect x="20" y="0" width="20" height="40" fill="#ffffff"/>
+            <rect x="40" y="0" width="20" height="40" fill="#ce2b37"/>
+          </svg>
+        </div>
+      </div>
+      </div>
+    </header>
+
+    <div class="portion-selector">
+      <label>Porzioni:</label>
+      <button id="decBtn" class="portion-btn">−</button>
+      <span id="portionCount" class="portion-count">2</span>
+      <button id="incBtn" class="portion-btn">+</button>
+    </div>
+
+    <div class="recipe-card">
+        <h2 class="recipe-title">Spaghetti aglio olio e peperoncino</h2>
+        <p class="chef">Chef: Maya</p>
+
+        <h3>Ingredienti</h3>
+        <ul class="ingredients" id="ingredientsList">
+          <li><span class="amount" data-base="300" data-unit="g">300 g</span> di spaghetti</li>
+          <li><span class="amount" data-base="3" data-unit="">3</span> spicchi d'aglio</li>
+          <li><span class="amount" data-base="1" data-unit="">1</span> peperoncino fresco intero</li>
+          <li>prezzemolo <span class="nonscalable">q.b.</span></li>
+          <li>olio d'oliva <span class="nonscalable">q.b.</span></li>
+          <li>acqua <span class="nonscalable">q.b.</span></li>
+          <li>sale <span class="nonscalable">q.b.</span></li>
+        </ul>
+
+        <h3>Preparazione</h3>
+        <ul class="preparation">
+          <li>Prendere una pentola, riempirla d'acqua, accendere il fuoco e mettere la pentola sul fuoco per far bollire l'acqua.</li>
+          <li>Nel frattempo, prendere 3 spicchi d'aglio, sbucciarli e tagliarli finemente. Prendere 1 peperoncino fresco intero. Prendere un po' di prezzemolo e tagliarlo.</li>
+          <li>Quando l'acqua bolle, mettere gli spaghetti nella pentola e farli cuocere per 10 minuti.</li>
+          <li>Intanto, prendere una padella, farla riscaldare e versare una quantità generosa di olio d'oliva. Aggiungere l'aglio tagliato e il peperoncino e farli soffriggere.</li>
+          <li>Prendere uno scolapasta, scolare la pasta e versarla nella padella.</li>
+          <li>Mantecare per 1 minuto con un po' di acqua di cottura.</li>
+          <li>Finalizzare con un po' di prezzemolo.</li>
+        </ul>
+    </div>
+  </div>
+
+  <script>
+    const BASE_SERVINGS = 2;
+    let currentServings = BASE_SERVINGS;
+
+    const portionCount = document.getElementById('portionCount');
+    const decBtn = document.getElementById('decBtn');
+    const incBtn = document.getElementById('incBtn');
+    const amountSpans = document.querySelectorAll('.amount');
+
+    function updatePortions() {
+      portionCount.textContent = currentServings;
+      const multiplier = currentServings / BASE_SERVINGS;
+
+      amountSpans.forEach(span => {
+        const base = parseFloat(span.dataset.base);
+        const unit = span.dataset.unit;
+        if (!isNaN(base)) {
+          const scaled = Math.round(base * multiplier);
+          span.textContent = scaled + (unit ? ' ' + unit : '');
+        }
+      });
+    }
+
+    decBtn.addEventListener('click', () => {
+      if (currentServings > 1) {
+        currentServings--;
+        updatePortions();
+      }
+    });
+
+    incBtn.addEventListener('click', () => {
+      if (currentServings < 10) {
+        currentServings++;
+        updatePortions();
+      }
+    });
+  </script>
+</body>
+</html>

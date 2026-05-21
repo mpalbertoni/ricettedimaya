@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maschera Sonora</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="../index.html" style="position:fixed;top:12px;left:12px;z-index:100;color:#fff;text-decoration:none;font-family:'Segoe UI',sans-serif;font-size:14px;background:rgba(0,0,0,0.5);padding:4px 10px;border-radius:4px;">← Back</a>
+  <div id="app">
+    <header>
+      <h1>Maschera Sonora</h1>
+      <div id="controls-bar">
+        <button id="mic-btn" class="btn">🎤 Microfono</button>
+        <span id="status">⏸ In attesa...</span>
+      </div>
+    </header>
+
+    <main>
+      <div id="mask-container">
+        <div id="mask-stage"></div>
+      </div>
+    </main>
+
+    <footer>
+      <div id="sliders">
+        <div class="slider-group">
+          <label>🔊 Volume Sensitivity</label>
+          <input type="range" id="slider-sensitivity" min="0" max="100" value="70">
+          <span class="slider-value" id="val-sensitivity">70%</span>
+        </div>
+        <div class="slider-group">
+          <label>⚡ Transition Speed</label>
+          <input type="range" id="slider-speed" min="0" max="100" value="50">
+          <span class="slider-value" id="val-speed">50%</span>
+        </div>
+        <div class="slider-group">
+          <label>👁 Movimento Occhi/Sopracciglia</label>
+          <input type="range" id="slider-face-move" min="0" max="100" value="50">
+          <span class="slider-value" id="val-face-move">50%</span>
+        </div>
+        <div class="slider-group">
+          <label>🗣 Mouth Intensity</label>
+          <input type="range" id="slider-mouth" min="0" max="100" value="100">
+          <span class="slider-value" id="val-mouth">100%</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script src="mask.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

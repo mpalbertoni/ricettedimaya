@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pasta aglio e olio e peperoncino — Chef Maya</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="../../index.html" style="position:fixed;top:12px;left:12px;z-index:100;color:#333;text-decoration:none;font-family:'Segoe UI',sans-serif;font-size:14px;background:rgba(255,255,255,0.8);padding:4px 10px;border-radius:4px;">← Back</a>
+
+  <button class="print-btn" title="Stampa" aria-label="Stampa ricetta">&#128424;</button>
+
+  <div class="container">
+
+    <header class="header">
+      <h1>Pasta aglio e olio<br>e peperoncino</h1>
+      <p class="chef">di <strong>Chef Maya</strong></p>
+    </header>
+
+    <div class="info-bar">
+      <span class="tag">Preparazione: 5 min</span>
+      <span class="tag">Cottura: 10 min</span>
+      <span class="tag">Totale: 15 min</span>
+    </div>
+
+    <section class="ingredients">
+      <h2>Ingredienti</h2>
+      <div class="portion-control">
+        <label for="portions">Porzioni:</label>
+        <input type="range" id="portions" min="1" max="6" value="2">
+        <span id="portion-display">2</span>
+      </div>
+      <ul id="ingredient-list">
+        <li><input type="checkbox" id="ing-0"><label for="ing-0"><span class="qty" data-base="300" data-unit="g">300 g</span> di spaghetti</label></li>
+        <li><input type="checkbox" id="ing-1"><label for="ing-1"><span class="qty" data-base="3" data-unit="">3</span> spicchi d'aglio</label></li>
+        <li><input type="checkbox" id="ing-2"><label for="ing-2"><span class="qty" data-base="1" data-unit="">1</span> peperoncino fresco intero</label></li>
+        <li><input type="checkbox" id="ing-3"><label for="ing-3">Prezzemolo q.b.</label></li>
+        <li><input type="checkbox" id="ing-4"><label for="ing-4">Olio d'oliva q.b.</label></li>
+        <li><input type="checkbox" id="ing-5"><label for="ing-5">Acqua q.b.</label></li>
+      </ul>
+    </section>
+
+    <section class="steps">
+      <h2>Preparazione</h2>
+      <ol>
+        <li>
+          <span class="step-num">1</span>
+          <div><strong>Lessare la pasta.</strong> Prendere una pentola, riempirla d'acqua, accendere il fuoco e portare a bollore. Calare gli spaghetti e cuocere per 10 minuti.</div>
+        </li>
+        <li>
+          <span class="step-num">2</span>
+          <div><strong>Preparare il condimento.</strong> Nel frattempo, sbucciare i 3 spicchi d'aglio e tagliarli finemente. Tagliare il prezzemolo.</div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
+          <div><strong>Soffriggere.</strong> Scaldare una padella con una generosa quantità d'olio d'oliva. Aggiungere l'aglio tagliato e il peperoncino intero e farli soffriggere.</div>
+        </li>
+        <li>
+          <span class="step-num">4</span>
+          <div><strong>Mantecare.</strong> Scolare la pasta al dente e versarla direttamente nella padella con il soffritto. Mantecare per 1 minuto, aggiungendo un po' d'acqua di cottura se necessario.</div>
+        </li>
+        <li>
+          <span class="step-num">5</span>
+          <div><strong>Impiattare.</strong> Finalizzare con una spolverata di prezzemolo fresco tritato e servire.</div>
+        </li>
+      </ol>
+    </section>
+
+    <footer class="footer">
+      <p>Buon appetito! &#127837;</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
